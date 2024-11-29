@@ -246,16 +246,13 @@ class ProfCoursTest extends TestCase
 
         // Prof
         $prof = Prof::printOne($conn);
-        if ($prof !== null) {
-            $prof_str = $prof->__toString();
-            print "########## - 1e PROF EN BASE - ########## \n";
-            print $prof_str."\n";
-            print "################################################################\n\n";
-            $expected = self::$prof_a[0]->__toString();
-            $this->assertEquals($expected, $prof_str, "Prof \n");
-        } else {
-            $this->fail("Failed to fetch Prof record.");
-        }
+        $prof_str = $prof->__toString();
+        print "########## - 1e PROF EN BASE - ########## \n";
+        print $prof_str."\n";
+        print "################################################################\n\n";
+        $expected = self::$prof_a[0]->__toString();
+        $this->assertEquals($expected, $prof_str, "Prof \n");
+
         // Cours
 
         /**
@@ -272,29 +269,22 @@ class ProfCoursTest extends TestCase
         $idCours = 9;
         // Prof
         $prof = Prof::printOne($conn, $idProf);
-        if ($prof !== null) {
-            $prof_str = $prof->__toString();
-            print "########## - ${idProf}e PROF EN BASE - ########## \n";
-            print $prof_str."\n";
-            print "################################################################\n\n";
-            $expected = self::$prof_a[$idProf-1]->__toString();
-            $this->assertEquals($expected, $prof_str, "Prof \n");
-        } else {
-            $this->fail("Failed to fetch Prof record with ID $idProf.");
-        }
-    
+        $prof_str = $prof->__toString();
+        print "########## - ${idProf}e PROF EN BASE - ########## \n";
+        print $prof_str."\n";
+        print "################################################################\n\n";
+        $expected = self::$prof_a[$idProf-1]->__toString();
+        $this->assertEquals($expected, $prof_str, "Prof \n");
+
         // Cours
         $cours = Cours::printOne($conn, $idCours);
-        if ($cours !== null) {
-            $cours_str = $cours->__toString();
-            print "@@@@@@@@@@@@@ - ${idCours}e COURS EN BASE - @@@@@@@@@@@@@ \n";
-            print $cours_str."\n";
-            print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n";
-            $expected = self::$cours_a[$idCours-1]->__toString();
-            $this->assertEquals($expected, $cours_str, "Cours \n");
-        } else {
-            $this->fail("Failed to fetch Cours record with ID $idCours.");
-        }
+        $cours_str = $cours->__toString();
+        print "@@@@@@@@@@@@@ - ${idCours}e COURS EN BASE - @@@@@@@@@@@@@ \n";
+        print $cours_str."\n";
+        print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n";
+        $expected = self::$cours_a[$idCours-1]->__toString();
+        $this->assertEquals($expected, $cours_str, "Cours \n");
+
     }
 
 
@@ -318,13 +308,9 @@ class ProfCoursTest extends TestCase
         $val = $prof->updateOne($conn, $idProf);
         $expected_prof_str = $prof->__toString();
         $record_prof = Prof::printOne($conn, $idProf);
-        if ($record_prof !== null) {
-            $this->assertEquals($expected_prof_str, $record_prof->__toString(), "Update du prof $idProf ...\n");
-        } else {
-            $this->fail("Failed to fetch updated Prof record with ID $idProf.");
-        }
+        $this->assertEquals($expected_prof_str, $record_prof->__toString(), "Update du prof $idProf ...\n");
         $this->assertTrue($val, "Update du prof num $idProf ...\n");
-    
+
         // Cours
 
         /**
@@ -368,25 +354,16 @@ class ProfCoursTest extends TestCase
         $val = $prof->updateOne($conn);
         $expected_prof_str = $prof->__toString();
         $record_prof = Prof::printOne($conn);
-        if ($record_prof !== null) {
-            $this->assertEquals($expected_prof_str, $record_prof->__toString(), "Update du 1e prof ...\n");
-        } else {
-            $this->fail("Failed to fetch updated Prof record.");
-        }
+        $this->assertEquals($expected_prof_str, $record_prof->__toString(), "Update du 1e prof ...\n");
         $this->assertTrue($val, "Update du 1e prof ...\n");
-    
+
         // Cours
         $cours = new Cours($this->intitule, $this->duree, 10);
         $val = $cours->updateOne($conn);
         $expected_cours_str= $cours->__toString();
         $record_cours = Cours::printOne($conn);
-        if ($record_cours !== null) {
-            $this->assertEquals($expected_cours_str, $record_cours->__toString(), "Update du 1e cours  ...\n");
-        } else {
-            $this->fail("Failed to fetch updated Cours record.");
-        }
+        $this->assertEquals($expected_cours_str, $record_cours->__toString(), "Update du 1e cours  ...\n");
         $this->assertTrue($val, "Update du 1e cours ...\n");
-    
 
         print "########## - LISTE DES PROFS - APRES UPDATE DU 1e PROF  ########## \n";
         foreach ( $record_prof_a = Prof::printAll($conn) as $record_prof ) {
