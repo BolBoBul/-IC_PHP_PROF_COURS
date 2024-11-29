@@ -446,7 +446,6 @@ class ProfCoursTest extends TestCase
         print "################################################################\n\n";
     }
 
-
     public function testDeleteOne_2()
     {
         print __METHOD__."\n";
