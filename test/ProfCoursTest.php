@@ -225,6 +225,7 @@ class ProfCoursTest extends TestCase
     public function testGetMyProf() {
         print __METHOD__."\n";
         $conn = $this->getConnection();
+	print "CONN VAR". $conn
         $cours_a = self::$cours_a;
         print "+++++++++++++++++++++ - LISTE DES COURS ET LEUR PROF - ++++++++++++++++++++\n";
         foreach ($cours_a as $cours){
