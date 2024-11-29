@@ -99,7 +99,6 @@ class Prof {
         $stmt = $conn->query("SELECT * FROM prof WHERE idprof = $id;");
         $row = $stmt->fetch();
         $prof = null;
-        echo "ID IS (printOne): $id \n";
         if($row) {
             $prof = new Prof( $row["nom"], $row["prenom"], $row["datenaiss"], $row["lieunaiss"]);
             //echo "* " . $row["id"]. ") " . $row["nom"]. " ". $row["prenom"]. " | " . $row["datenaiss"]. " - " . $row["lieunaiss"] ."\n";
@@ -128,7 +127,6 @@ class Prof {
                 $ret = -1;
                 echo "Aucun ENregistrement dans la table prof \n";
             }
-            echo "ID IS (getOneId): $ret \n";
         } catch (\PDOException $e){
             $ret = -1;
             echo $sql . "\n" . $e->getMessage();
