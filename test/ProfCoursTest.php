@@ -246,12 +246,13 @@ class ProfCoursTest extends TestCase
 
         // Prof
         $prof = Prof::printOne($conn);
-        $prof_str = $prof->__toString();
-        print "########## - 1e PROF EN BASE - ########## \n";
-        print $prof_str."\n";
-        print "################################################################\n\n";
-        $expected = self::$prof_a[0]->__toString();
-        $this->assertEquals($expected, $prof_str, "Prof \n");
+        if ($prof !== null) {
+            $prof_str = $prof->__toString();
+            print "########## - 1e PROF EN BASE - ########## \n";
+            print $prof_str."\n";
+            print "################################################################\n\n";
+            $expected = self::$prof_a[0]->__toString();
+            $this->assertEquals($expected, $prof_str, "Prof \n");
         } else {
             $this->fail("Failed to fetch Prof record.");
         }
